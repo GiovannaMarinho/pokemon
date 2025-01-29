@@ -82,7 +82,12 @@ namespace MySQLConnectionExample
                     * {{
                         padding: 0;
                         margin: 0;
+                    }}
+                    body{{
                         background-image: url('{backgroundImage[0]}');
+                        background-size: cover;
+                        background-position: center;
+                        transition: background-image 0.5s ease-in-out;
                     }}
                     .star{{
                         position: absolute;
@@ -160,6 +165,23 @@ namespace MySQLConnectionExample
                         document.querySelector('.card').src = imagens[indiceAtual];
                         document.getElementById('nomesCard').innerText = nomes[indiceAtual];
                     }}
+                    document.getElementById('star').addEventListener('click', function() {{
+                        let body = document.body;
+                        let card = document.querySelector('.card');
+                        let starButton = document.getElementById('star').querySelector('img');
+
+                        if (body.classList.contains('sky-mode')) {{
+                            body.classList.remove('sky-mode');
+                            body.style.backgroundImage = ""url('./assets/bg-normal.png')"";
+                            card.src = imagens[indiceAtual]; 
+                            starButton.src = './assets/star.svg'; 
+                        }} else {{
+                            body.classList.add('sky-mode');
+                            body.style.backgroundImage = ""url('./assets/bg-sky.png')"";
+                            card.src = imagensShinny[indiceAtual];
+                            starButton.src = './assets/normal.svg';
+                        }}
+                    }});
                 </script>
             </body>
             </html>";

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\GIH\\Downloads\\projetos\\pokemon\\pokemon.csproj": {}
+    "C:\\Users\\GIH\\Downloads\\pokemon\\pokemon.csproj": {}
   },
   "projects": {
-    "C:\\Users\\GIH\\Downloads\\projetos\\pokemon\\pokemon.csproj": {
+    "C:\\Users\\GIH\\Downloads\\pokemon\\pokemon.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GIH\\Downloads\\projetos\\pokemon\\pokemon.csproj",
+        "projectUniqueName": "C:\\Users\\GIH\\Downloads\\pokemon\\pokemon.csproj",
         "projectName": "pokemon",
-        "projectPath": "C:\\Users\\GIH\\Downloads\\projetos\\pokemon\\pokemon.csproj",
+        "projectPath": "C:\\Users\\GIH\\Downloads\\pokemon\\pokemon.csproj",
         "packagesPath": "C:\\Users\\GIH\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GIH\\Downloads\\projetos\\pokemon\\obj\\",
+        "outputPath": "C:\\Users\\GIH\\Downloads\\pokemon\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\GIH\\AppData\\Roaming\\NuGet\\NuGet.Config"
