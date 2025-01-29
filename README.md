@@ -1,7 +1,7 @@
 # Hall da Fama - Carrossel de Cards Pokémon
 
 📌 Sobre o Projeto
--------------------
+
 Este projeto é um carrossel de cards de Pokémon, onde os usuários podem navegar entre os cards e alternar entre o modo normal e shinny. Além disso, o fundo da página pode ser alterado ao clicar no botão de estrela.
 
 ⚠ Atenção: Este projeto ainda está em desenvolvimento!
