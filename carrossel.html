@@ -56,6 +56,26 @@
                         font-weight: 700;
                         font-family: 'Poppins';
                     }
+                    .link{
+                        position: absolute;
+                        right: 100px;
+                        bottom: 50px;
+                        display: inline-block;
+                        width: 90px;
+                        height: 40px;
+                        background: #313131;
+                        border-radius: 50px;
+                        color: #fff;
+                        font-size: 16px;
+                        text-align: center;
+                        line-height: 40px;
+                        text-decoration: none;
+                        font-family: 'Poppins';
+                    }
+                    .link:hover {
+                        transform: scale(1.1);
+                        animation: 3s;
+                    }
                 </style>
                 <link rel='preconnect' href='https://fonts.googleapis.com'>
                 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
@@ -76,6 +96,7 @@
                     <button onclick='changeImageRight()'>
                         <img id='switchRight' class='img_button' src='./assets/slideRight.svg' alt='Botão para direita'>
                     </button>
+                    <a class='link' href='./upload.html'>Upload</a>
                 </section>
                 <script>
                     const imagens = ['./assets/card-pikachu-normal.png', './assets/card-chansey-normal.png', './assets/card-cinderace-normal.png'];
@@ -96,17 +117,27 @@
                         let body = document.body;
                         let card = document.querySelector('.card');
                         let starButton = document.getElementById('star').querySelector('img');
+                        let name = document.getElementById('nomesCard')
+
+                        let buttonLeft = document.querySelector('#switchLeft');
+        	            let buttonRight = document.querySelector('#switchRight');
 
                         if (body.classList.contains('sky-mode')) {
                             body.classList.remove('sky-mode');
                             body.style.backgroundImage = "url('./assets/bg-normal.png')";
                             card.src = imagens[indiceAtual]; 
                             starButton.src = './assets/star.svg'; 
+                            name.style.color = 'black';
+                            buttonLeft.style.filter = 'invert(0%)';  
+                            buttonRight.style.filter = 'invert(0%)'; 
                         } else {
                             body.classList.add('sky-mode');
                             body.style.backgroundImage = "url('./assets/bg-sky.png')";
                             card.src = imagensShinny[indiceAtual];
                             starButton.src = './assets/normal.svg';
+                            name.style.color = 'white';
+                            buttonLeft.style.filter = 'invert(100%)';  
+                            buttonRight.style.filter = 'invert(100%)'; 
                         }
                     });
                 </script>

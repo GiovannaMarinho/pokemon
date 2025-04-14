@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using MySql.Data.MySqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace MySQLConnectionExample
 {
@@ -8,6 +9,16 @@ namespace MySQLConnectionExample
     {
         static void Main(string[] args)
         {
+            // Lendo config do appsettings.json
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            // Obtenção da string de conexão do appsettings.json
+            string connectionString = config.GetConnectionString("DefaultConnection");
+
+            // Definição das imagens de fundo, botões e estrelas
             string[] backgroundImage = 
             {
                 "./assets/bg-normal.png",
@@ -21,8 +32,7 @@ namespace MySQLConnectionExample
             string botaoDireito = "./assets/slideRight.svg";
             string botaoEsquerdo = "./assets/slideLeft.svg";
 
-            string connectionString = "Server=localhost;Database=cards_pokemon;User=root;Password=LulyRosa0106;";
-
+            // Conexão ao banco de dados MySQL
             using (var connection = new MySqlConnection(connectionString))
             {
                 try
@@ -39,6 +49,7 @@ namespace MySQLConnectionExample
                     var imagensShinny = new System.Collections.Generic.List<string>();
                     var nomes = new System.Collections.Generic.List<string>();
 
+                    // Leitura dos dados da tabela "Cards"
                     while (reader.Read())
                     {
                         imagens.Add(reader["ImagemNormal"]?.ToString() ?? "");
@@ -48,8 +59,8 @@ namespace MySQLConnectionExample
 
                     reader.Close();
                     
+                    // Geração do HTML com as imagens e dados
                     GenerateHtml(imagens, imagensShinny, backgroundImage, botaoDireito, botaoEsquerdo, nomes, star);
-
                 }
                 catch (Exception ex)
                 {
@@ -58,19 +69,22 @@ namespace MySQLConnectionExample
             }
         }
 
+        // Função para gerar o HTML
         static void GenerateHtml(
-                                    System.Collections.Generic.List<string> imagens, 
-                                    System.Collections.Generic.List<string> imagensShinny, 
-                                    string[] backgroundImage, 
-                                    string botaoDireito, 
-                                    string botaoEsquerdo, 
-                                    System.Collections.Generic.List<string> nomes, 
-                                    string[] star)
+            System.Collections.Generic.List<string> imagens, 
+            System.Collections.Generic.List<string> imagensShinny, 
+            string[] backgroundImage, 
+            string botaoDireito, 
+            string botaoEsquerdo, 
+            System.Collections.Generic.List<string> nomes, 
+            string[] star)
         {
+            // Convertendo listas de imagens e nomes em formato JSON
             string cardImagens = "[" + string.Join(", ", imagens.ConvertAll(img => $"'{img}'")) + "]";
             string cardImagensShinny = "[" + string.Join(", ", imagensShinny.ConvertAll(img => $"'{img}'")) + "]";
             string cardNomes = "[" + string.Join(", ", nomes.ConvertAll(nome => $"'{nome}'")) + "]";
 
+            // Montando o conteúdo HTML
             string htmlContent = $@"
             <!DOCTYPE html>
             <html lang='pt-br'>
@@ -83,13 +97,13 @@ namespace MySQLConnectionExample
                         padding: 0;
                         margin: 0;
                     }}
-                    body{{
+                    body {{
                         background-image: url('{backgroundImage[0]}');
                         background-size: cover;
                         background-position: center;
                         transition: background-image 0.5s ease-in-out;
                     }}
-                    .star{{
+                    .star {{
                         position: absolute;
                         right: 100px;
                         top: 50px;
@@ -129,6 +143,26 @@ namespace MySQLConnectionExample
                         font-weight: 700;
                         font-family: 'Poppins';
                     }}
+                    .link {{
+                        position: absolute;
+                        right: 100px;
+                        bottom: 50px;
+                        display: inline-block;
+                        width: 90px;
+                        height: 40px;
+                        background: #313131;
+                        border-radius: 50px;
+                        color: #fff;
+                        font-size: 16px;
+                        text-align: center;
+                        line-height: 40px;
+                        text-decoration: none;
+                        font-family: 'Poppins';
+                    }}
+                    .link:hover {{
+                        transform: scale(1.1);
+                        animation: 3s;
+                    }}
                 </style>
                 <link rel='preconnect' href='https://fonts.googleapis.com'>
                 <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
@@ -149,6 +183,7 @@ namespace MySQLConnectionExample
                     <button onclick='changeImageRight()'>
                         <img id='switchRight' class='img_button' src='{botaoDireito}' alt='Botão para direita'>
                     </button>
+                    <a class='link' href='./upload.html'>Upload</a>
                 </section>
                 <script>
                     const imagens = {cardImagens};
@@ -169,23 +204,34 @@ namespace MySQLConnectionExample
                         let body = document.body;
                         let card = document.querySelector('.card');
                         let starButton = document.getElementById('star').querySelector('img');
+                        let name = document.getElementById('nomesCard')
+
+                        let buttonLeft = document.querySelector('#switchLeft');
+        	            let buttonRight = document.querySelector('#switchRight');
 
                         if (body.classList.contains('sky-mode')) {{
                             body.classList.remove('sky-mode');
-                            body.style.backgroundImage = ""url('./assets/bg-normal.png')"";
+                            body.style.backgroundImage = ""url('./assets/bg-normal.png')""; 
                             card.src = imagens[indiceAtual]; 
                             starButton.src = './assets/star.svg'; 
+                            name.style.color = 'black';
+                            buttonLeft.style.filter = 'invert(0%)';  
+                            buttonRight.style.filter = 'invert(0%)'; 
                         }} else {{
                             body.classList.add('sky-mode');
-                            body.style.backgroundImage = ""url('./assets/bg-sky.png')"";
+                            body.style.backgroundImage = ""url('./assets/bg-sky.png')""; 
                             card.src = imagensShinny[indiceAtual];
                             starButton.src = './assets/normal.svg';
+                            name.style.color = 'white';
+                            buttonLeft.style.filter = 'invert(100%)';  
+                            buttonRight.style.filter = 'invert(100%)'; 
                         }}
                     }});
                 </script>
             </body>
             </html>";
 
+            // Escrevendo o conteúdo HTML em um arquivo
             File.WriteAllText("carrossel.html", htmlContent);
             Console.WriteLine("Arquivo HTML gerado com sucesso.");
         }

@@ -117,6 +117,26 @@
       border-radius: 50px;
       cursor: pointer;
     }
+  .link{
+    position: absolute;
+    right: 100px;
+    bottom: 50px;
+    display: inline-block;
+    width: 90px;
+    height: 40px;
+    background: #313131;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    font-family: 'Poppins';
+  }
+  .link:hover {
+      transform: scale(1.1);
+      animation: 3s;
+  }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -147,6 +167,7 @@
         </form>
       </section>
       <button class="btn nome-btn">Salvar</button>
+      <a class='link' href='./carrossel.html'>Cards</a>
     </section>
   </main>
   <script src="script.js"></script>
