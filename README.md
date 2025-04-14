@@ -1,16 +1,16 @@
-🃏 Projeto - Hall da Fama Pokémon
+# 🃏 Projeto - **Hall da Fama Pokémon**
 Este projeto é uma aplicação simples que conecta ao MySQL, busca dados de Cards Pokémon e gera uma página HTML interativa com um carrossel de navegação entre os cards.
 
 Além disso, o projeto conta com uma página upload.html para cadastro de novos cards.
 
-💡 Funcionalidades
+## 💡 Funcionalidades
 ✅ Conexão com banco de dados MySQL
 ✅ Carregamento dinâmico de imagens e nomes de cards
 ✅ Alternância entre modo Normal e Shiny
 ✅ Navegação pelo carrossel via botões
 ✅ Upload de novos cards
 
-🗂️ Estrutura de Pastas
+## 🗂️ Estrutura de Pastas
 css
 Copiar
 Editar
@@ -33,7 +33,7 @@ MySQL Server
 
 MySql.Data (já incluso no csproj)
 
-💻 Como rodar
+## 💻 Como rodar
 Clone o repositório:
 
 bash
@@ -63,7 +63,7 @@ Conexão bem-sucedida ao banco de dados!
 Arquivo HTML gerado com sucesso.
 O arquivo carrossel.html será criado no diretório raiz.
 
-🖼️ Como usar
+## 🖼️ Como usar
 Abra o carrossel.html em seu navegador.
 
 Use as setas para navegar entre os cards.
@@ -72,7 +72,7 @@ Clique no botão 🌟 para alternar entre o modo Normal e Shiny.
 
 Para adicionar novos cards, abra upload.html, preencha as informações e envie.
 
-📦 Dependências
+## 📦 Dependências
 MySql.Data - Conector C# para MySQL.
 
 Já adicionado no seu .csproj:
@@ -81,17 +81,17 @@ xml
 Copiar
 Editar
 <PackageReference Include="MySql.Data" Version="9.1.0" />
-🧠 Observações
+### 🧠 Observações
 O projeto pressupõe que você já tenha as imagens salvas no banco de dados e referenciadas corretamente.
 
 As imagens dos botões e fundos precisam estar dentro da pasta /assets.
 
-🚀 Melhorias futuras
+## 🚀 Melhorias futuras
 Implementar upload real de imagens no banco.
 
 Adicionar transições suaves no carrossel.
 
 Criar paginação caso o número de cards seja muito grande.
 
-🏆 Créditos
+### 🏆 Créditos
 Projeto desenvolvido por Giovanna Marinho.
